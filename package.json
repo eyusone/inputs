@@ -55,7 +55,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
   "keywords": [],
   "author": "",

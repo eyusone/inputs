@@ -4,7 +4,7 @@ import { BaseInput } from './BaseInput';
 import { indexOf } from 'lodash';
 
 export const FloatInput = ({ placeholder, value, onChange, name, onClear, min, max, precision }) => {
-  const getPrecision = value => {
+  const withPrecision = value => {
     const valueArray = value.split('');
     const indexOfDot = indexOf(valueArray, '.');
     const result = indexOfDot!==-1 ? valueArray.slice(0, indexOfDot + precision + 1).join('') : valueArray.join('')
@@ -12,7 +12,7 @@ export const FloatInput = ({ placeholder, value, onChange, name, onClear, min, m
   }
   
   const checkValue = value => {
-    return !Number.isInteger(+value) ? parseFloat(getPrecision(value)) : +value === 0 ? getPrecision(value) : +getPrecision(value)
+    return !Number.isInteger(+value) ? parseFloat(withPrecision(value)) : +value === 0 ? withPrecision(value) : +withPrecision(value)
   }
 
   return (
