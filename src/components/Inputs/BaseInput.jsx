@@ -53,7 +53,7 @@ export const BaseInput = ({ type, placeholder, value, onChange, name, isSearch, 
       />
       {
         isSearch ? 
-        <SearchIcon>
+        <SearchIcon onClick={e => e.preventDefault()}>
           <img src={icons.search.src} />
         </SearchIcon> : null
       }
