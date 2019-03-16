@@ -1,7 +1,7 @@
 # inputs
 react inputs
 
-Install locally:
+Run locally:
 
 1. git clone https://github.com/eyusone/inputs.git
 2. npm i
