@@ -58,7 +58,7 @@
     "start": "webpack-dev-server --config ./webpack.config.js",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook -c .storybook -o .out",
-    "deploy-storybook": "storybook-to-ghpages",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [],
   "author": "",
