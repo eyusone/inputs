@@ -4,5 +4,6 @@ react inputs
 Run locally:
 
 1. git clone https://github.com/eyusone/inputs.git
-2. npm i
-3. npm run storybook
+2. cd inputs
+3. npm i
+4. npm run storybook
