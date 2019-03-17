@@ -3,6 +3,7 @@ import { SimpleInput } from './Inputs/SimpleInput';
 import { IntegerInput } from './Inputs/IntegerInput';
 import { SearchInput } from './Inputs/SearchInput';
 import { FloatInput } from './Inputs/FloatInput';
+import { isNaN } from 'lodash';
 
 class Example extends React.Component {
   state = {
@@ -12,16 +13,21 @@ class Example extends React.Component {
     searchQuery: '',
   };
 
+  checkValues = (value, max, min) => {
+    const intValue = Number.parseFloat(value);
+    const intMax = Number.parseFloat(max);
+    const intMin = Number.parseFloat(min);
+    const valueArr = value.split('');
+    return intValue >= intMin ? intValue < intMax ? valueArr.slice(0, valueArr.length).join('') : max : min
+  };
+
   onInputValueChange = e => {
     this.setState({ inputValue: e.target.value });
   };
 
-  onIntegerValueChange = e => {
-    this.setState({ integerValue: e.target.value });
-  }
-
-  onFloatValueChange = e => {
-    this.setState({ floatValue: e.target.value });
+  onNumberValueChange = value => e => {
+    const checkedValue = this.checkValues(e.target.value, e.target.getAttribute('max'), e.target.getAttribute('min'));
+    this.setState({ [value]: +checkedValue!==0 ? checkedValue : '' });
   }
 
   onSearch = e => {
@@ -29,7 +35,7 @@ class Example extends React.Component {
   }
 
   clearInput = inputValue => e => {
-    this.setState({ [inputValue]: '' })
+    this.setState({ [inputValue]: this.state[inputValue] === '' ? 'error' : '' })
   };
 
   render() {
@@ -47,7 +53,7 @@ class Example extends React.Component {
         <IntegerInput
           placeholder='16'
           value={this.state.integerValue}
-          onChange={this.onIntegerValueChange}
+          onChange={this.onNumberValueChange('integerValue')}
           onClear={this.clearInput('integerValue')}
           name='integerInput'
           min={0}
@@ -57,7 +63,7 @@ class Example extends React.Component {
         <FloatInput
           placeholder='00.00'
           value={this.state.floatValue}
-          onChange={this.onFloatValueChange}
+          onChange={this.onNumberValueChange('floatValue')}
           onClear={this.clearInput('floatValue')}
           name='floatInput'
           precision={2}

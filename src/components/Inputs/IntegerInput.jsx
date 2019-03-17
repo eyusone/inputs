@@ -1,10 +1,18 @@
 import React from 'react';
 import { BaseInput } from './BaseInput';
 import PropTypes from 'prop-types';
+import { indexOf } from 'lodash';
 
 export const IntegerInput = ({ placeholder, value, onChange, name, onClear, min, max }) => {
+  const deleteDots = value => {
+    const valueArray = value.split('');
+    const indexOfDot = indexOf(valueArray, '.');
+    const result = indexOfDot!==-1 ? valueArray.slice(0, indexOfDot).join('') : valueArray.join('')
+    return result
+  };
+
   const checkValue = value => {
-    return !Number.isInteger(+value) ? Number.parseInt(value) : +value === 0 ? value : +value
+    return !Number.isInteger(+value) ? parseFloat(deleteDots(value)) : +value === 0 ? value : +deleteDots(value)
   };
 
   return (

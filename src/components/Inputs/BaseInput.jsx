@@ -20,7 +20,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-export const BaseInput = ({ type, placeholder, value, onChange, name, isSearch, onClear, icons, min, max, precision }) => {
+export const BaseInput = ({ type, placeholder, value, onChange, name, isSearch, onClear, icons, min, max }) => {
   const inputs = {
     simpleInput: {
       filterValue: value => value
